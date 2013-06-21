@@ -1,7 +1,9 @@
-package com.moneymatters.model.neo4j.repository;
+package com.moneymatters.neo4j.repository;
 
-import com.moneymatters.model.neo4j.UserImpl;
+import com.moneymatters.neo4j.UserImpl;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.neo4j.repository.GraphRepository;
+import org.springframework.stereotype.Component;
 
 /**
  * MoneyMatters = where money does matter!
@@ -10,4 +12,5 @@ import org.springframework.data.neo4j.repository.GraphRepository;
  * Time: 3:42 PM
  * Class Name: UserRepository
  */
+@Component
 public interface UserRepository extends GraphRepository<UserImpl> {}

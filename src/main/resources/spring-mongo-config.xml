@@ -11,10 +11,10 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <bean id="userBase" abstract="true" class="com.moneymatters.model.User"/>
-    <bean id="user" parent="userBase" class="com.moneymatters.model.impl.UserImpl" scope="prototype"/>
-    <bean id="userRepository" class="com.moneymatters.model.mongo.repository.UserRepository"/>
-    <bean id="genericRepo" class="com.moneymatters.model.mongo.repository.MainRepository"/>
+    <bean id="userBase" abstract="true" class="com.moneymatters.domain.User"/>
+    <bean id="user" parent="userBase" class="com.moneymatters.mongo.UserImpl" scope="prototype"/>
+    <bean id="userRepository" class="com.moneymatters.mongo.repository.UserRepository"/>
+    <bean id="genericRepo" class="com.moneymatters.mongo.repository.MainRepository"/>
 
 
     <context:annotation-config/>

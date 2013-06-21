@@ -1,9 +1,13 @@
-package com.moneymatters.model.neo4j.repository;
+package com.moneymatters.neo4j.manager;
 
-import com.moneymatters.model.User;
-import com.moneymatters.model.neo4j.UserImpl;
+import com.moneymatters.domain.User;
+import com.moneymatters.neo4j.UserImpl;
+import com.moneymatters.neo4j.repository.UserRepository;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -16,10 +20,15 @@ import java.util.Collection;
  * Class Name: UserRepositoryImpl
  */
 @Service
-public class UserRepositoryImpl {
+public class UserManager implements ApplicationContextAware{
 
     @Autowired
     private UserRepository userRepository;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 
     public Collection<UserImpl> makeSomeUser() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.

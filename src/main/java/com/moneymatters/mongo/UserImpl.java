@@ -1,13 +1,11 @@
-package com.moneymatters.model.impl;
+package com.moneymatters.mongo;
 
 import java.util.List;
 
-import com.moneymatters.model.Account;
-import com.moneymatters.model.BaseModel;
-import com.moneymatters.model.Budget;
-import com.moneymatters.model.User;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import com.moneymatters.domain.Account;
+import com.moneymatters.domain.BaseModel;
+import com.moneymatters.domain.Budget;
+import com.moneymatters.domain.User;
 
 /**
  * MoneyMatters = where money does matter!

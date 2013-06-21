@@ -1,4 +1,4 @@
-package com.moneymatters.model;
+package com.moneymatters.domain;
 
 import org.springframework.data.annotation.Id;
 

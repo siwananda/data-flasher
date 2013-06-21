@@ -1,4 +1,4 @@
-package com.moneymatters.model;
+package com.moneymatters.domain;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

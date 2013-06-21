@@ -1,6 +1,6 @@
-package com.moneymatters.model.neo4j;
+package com.moneymatters.neo4j;
 
-import com.moneymatters.model.User;
+import com.moneymatters.domain.User;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;

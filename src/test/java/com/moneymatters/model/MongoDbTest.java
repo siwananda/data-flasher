@@ -1,7 +1,8 @@
 package com.moneymatters.model;
 
-import com.moneymatters.model.mongo.repository.MainRepository;
-import com.moneymatters.model.mongo.repository.UserRepository;
+import com.moneymatters.domain.User;
+import com.moneymatters.mongo.repository.MainRepository;
+import com.moneymatters.mongo.repository.UserRepository;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

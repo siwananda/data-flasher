@@ -1,4 +1,4 @@
-package com.moneymatters.model.mongo;
+package com.moneymatters.mongo;
 
 import com.mongodb.Mongo;
 import org.springframework.context.annotation.Bean;

@@ -1,19 +1,12 @@
 package com.moneymatters.model;
 
-import com.moneymatters.model.neo4j.UserImpl;
-import com.moneymatters.model.neo4j.repository.UserRepository;
-import com.moneymatters.model.neo4j.repository.UserRepositoryImpl;
+import com.moneymatters.neo4j.manager.UserManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
-import org.springframework.data.neo4j.support.node.Neo4jHelper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.AfterTransaction;
-import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -29,15 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class Neo4JTest {
 
     @Autowired
-    UserRepositoryImpl userRepository;
+    UserManager userManager;
 
     @Autowired
     Neo4jTemplate template;
-
-    @BeforeTransaction
-    public void cleanupgraph(){
-        Neo4jHelper.cleanDb(template);
-    }
 
     @Test
     public void mainTest() throws Exception {
@@ -49,13 +37,9 @@ public class Neo4JTest {
         long numberOfPeople = repo.count();*/
         //UserRepositoryImpl userRepository = context.getBean(UserRepositoryImpl.class);
 
-        userRepository.createUser("John", "3251");
+        userManager.createUser("John", "3251");
 
 
-    }
-
-    @AfterTransaction
-    public void closeConn(){
     }
 
 }

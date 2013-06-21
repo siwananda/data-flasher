@@ -1,10 +1,7 @@
-package com.moneymatters.model.mongo.repository;
+package com.moneymatters.mongo.repository;
 
-import com.moneymatters.model.User;
-import com.moneymatters.model.impl.UserImpl;
+import com.moneymatters.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 import org.slf4j.Logger;
