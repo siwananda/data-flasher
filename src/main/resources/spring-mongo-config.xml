@@ -30,6 +30,6 @@
         <property name="host" value="localhost"/>
     </bean>
 
-    <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
+    <!-- Use this post processor to translate any MongoExceptions thrown in @repository annotated classes -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 </beans>

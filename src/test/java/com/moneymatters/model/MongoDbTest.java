@@ -9,7 +9,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import sun.jdbc.odbc.ee.PoolProperties;
 
 /**
  * MoneyMatters = where money does matter!
@@ -19,13 +18,13 @@ import sun.jdbc.odbc.ee.PoolProperties;
  * Class Name: MongoDbTest
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring-config.xml")
+@ContextConfiguration("classpath:spring-mongo-config.xml")
 public class MongoDbTest {
     @Test
     @Ignore
     public void mainTest() throws Exception {
 
-        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-mongo-config.xml");
 
         UserRepository userRepository = context.getBean(UserRepository.class);
         userRepository.dropUserCollection();
@@ -49,7 +48,7 @@ public class MongoDbTest {
     @Test
     public void genericsTest() throws Exception {
 
-        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-mongo-config.xml");
 
         MainRepository genericRepo = context.getBean(MainRepository.class);
         genericRepo.dropTCollection(User.class);
