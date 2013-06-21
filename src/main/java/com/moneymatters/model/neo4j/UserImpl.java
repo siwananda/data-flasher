@@ -1,6 +1,7 @@
 package com.moneymatters.model.neo4j;
 
 import com.moneymatters.model.User;
+import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
@@ -14,6 +15,8 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 @NodeEntity
 public class UserImpl implements User {
 
+    @GraphId
+    private Long nodeId;
     private String id;
 
     @Indexed( indexName = "name" )
