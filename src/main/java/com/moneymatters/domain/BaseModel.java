@@ -10,14 +10,14 @@ import org.springframework.data.annotation.Id;
  * Class Name: BaseModel
  */
 public class BaseModel {
-    public String id;
+    public Long id;
     public String name;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

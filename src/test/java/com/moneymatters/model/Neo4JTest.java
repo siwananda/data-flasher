@@ -1,9 +1,15 @@
 package com.moneymatters.model;
 
+import com.moneymatters.domain.User;
+import com.moneymatters.neo4j.domain.UserImpl;
 import com.moneymatters.neo4j.manager.UserManager;
+import com.moneymatters.neo4j.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,10 +30,7 @@ public class Neo4JTest {
     @Autowired
     UserManager userManager;
 
-    @Autowired
-    Neo4jTemplate template;
-
-    @Test
+    @Test(expected=DataIntegrityViolationException.class)
     public void mainTest() throws Exception {
         //ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-neo4j-config.xml");
 
@@ -37,7 +40,14 @@ public class Neo4JTest {
         long numberOfPeople = repo.count();*/
         //UserRepositoryImpl userRepository = context.getBean(UserRepositoryImpl.class);
 
-        userManager.createUser("John", "3251");
+        userManager.createUser("John", "johnBosco@email.com");
+        userManager.createUser("Kakung", "kakungBisco@email.com");
+
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring-neo4j-config.xml");
+        UserRepository userRepo = context.getBean(UserRepository.class);
+        User u = userRepo.findByEmail("kakungBisco@email.com");
+        u.setEmail("johnBosco@email.com");
+        userRepo.save((UserImpl)u);
 
 
     }

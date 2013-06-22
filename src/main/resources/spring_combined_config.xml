@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:neo4j="http://www.springframework.org/schema/data/neo4j"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/data/neo4j
+       http://www.springframework.org/schema/data/neo4j/spring-neo4j-2.0.xsd">
+
+    <context:annotation-config/>
+
+    <beans profile="mongo">
+        <bean id="userBase" abstract="true" class="com.moneymatters.domain.User"/>
+        <bean id="userImpl" parent="userBase" class="com.moneymatters.mongo.domain.UserImpl" scope="prototype"/>
+        <bean id="genericRepo" class="com.moneymatters.mongo.repository.MainRepository"/>
+
+
+
+        <context:component-scan base-package="com.moneymatters.mongo"/>
+
+        <mongo:repositories base-package="com.moneymatters.mongo.repository"/>
+        <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
+        <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+            <constructor-arg name="mongo" ref="mongo"/>
+            <constructor-arg name="databaseName" value="demo"/>
+        </bean>
+
+        <!-- Factory bean that creates the Mongo instance -->
+        <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+            <property name="host" value="localhost"/>
+        </bean>
+
+        <!-- Use this post processor to translate any MongoExceptions thrown in @repository annotated classes -->
+        <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    </beans>
+
+    <beans profile="neo4j">
+        <context:component-scan base-package="com.moneymatters.neo4j"/>
+        <neo4j:config graphDatabaseService="graphDatabaseService"/>
+        <bean id="graphDatabaseService"
+              class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
+            <constructor-arg index="0" value="http://localhost:7474/db/data" />
+        </bean>
+        <neo4j:repositories base-package="com.moneymatters.neo4j.repository"/>
+    </beans>
+
+    <beans profile="combined">
+        <context:component-scan base-package="com.moneymatters.mongo"/>
+        <mongo:repositories base-package="com.moneymatters.mongo.repository"/>
+        <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
+        <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+            <constructor-arg name="mongo" ref="mongo"/>
+            <constructor-arg name="databaseName" value="demo"/>
+        </bean>
+
+        <!-- Factory bean that creates the Mongo instance -->
+        <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+            <property name="host" value="localhost"/>
+        </bean>
+
+        <!-- Use this post processor to translate any MongoExceptions thrown in @repository annotated classes -->
+        <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    </beans>
+
+</beans>

@@ -18,7 +18,6 @@
         <constructor-arg index="0" value="http://localhost:7474/db/data" />
     </bean>
     <neo4j:repositories base-package="com.moneymatters.neo4j.repository"/>
-    <!--<neo4j:config storeDirectory="E://databases//neo4j"/>
-    <neo4j:repositories base-package="com.moneymatters.neo4j.repository"/>-->
+    <!--<neo4j:config storeDirectory="E://databases//neo4j"/>-->
 
 </beans>

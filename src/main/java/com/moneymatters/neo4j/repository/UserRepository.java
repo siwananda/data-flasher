@@ -1,9 +1,10 @@
 package com.moneymatters.neo4j.repository;
 
-import com.moneymatters.neo4j.UserImpl;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.moneymatters.neo4j.domain.UserImpl;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * MoneyMatters = where money does matter!
@@ -13,4 +14,6 @@ import org.springframework.stereotype.Component;
  * Class Name: UserRepository
  */
 @Component
-public interface UserRepository extends GraphRepository<UserImpl> {}
+public interface UserRepository extends GraphRepository<UserImpl> {
+    UserImpl findByEmail(String email);
+}
